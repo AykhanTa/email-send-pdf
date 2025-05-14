@@ -1,6 +1,7 @@
 package com.example.email_send_pdf.service.impl;
 
 import com.example.email_send_pdf.dto.UserCreateDto;
+import com.example.email_send_pdf.dto.UserDto;
 import com.example.email_send_pdf.models.UserDetails;
 import com.example.email_send_pdf.repository.UserDetailsRepository;
 import com.example.email_send_pdf.service.UserDetailsService;
