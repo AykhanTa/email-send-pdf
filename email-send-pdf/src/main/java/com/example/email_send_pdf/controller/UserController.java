@@ -1,5 +1,6 @@
 package com.example.email_send_pdf.controller;
 
+import com.example.email_send_pdf.dto.PdfRequest;
 import com.example.email_send_pdf.service.EmailService;
 import com.example.email_send_pdf.service.PdfService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,10 @@ public class UserController {
     private final PdfService pdfService;
 
     @PostMapping("/send-pdf")
-    public ResponseEntity<String> sendUserPdf(@RequestBody String finCode,@RequestBody String email) {
+    public ResponseEntity<String> sendUserPdf(@RequestBody PdfRequest pdfRequest) {
         try {
-            byte[] pdf = pdfService.generateUserPdf(finCode);
-            emailService.sendPdfEmail(email, pdf);
+            byte[] pdf = pdfService.generateUserPdf(pdfRequest.getFinCode());
+            emailService.sendPdfEmail(pdfRequest.getEmail(), pdf);
             return ResponseEntity.ok("PDF emailə göndərildi.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Xəta baş verdi: " + e.getMessage());
